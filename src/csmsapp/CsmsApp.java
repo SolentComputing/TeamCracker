@@ -34,4 +34,7 @@ public class CsmsApp extends Application {
         launch(args);
     }
     
+    public void promptUser(){
+    }
+    
 }

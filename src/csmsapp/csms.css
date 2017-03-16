@@ -1,0 +1,118 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 14-Mar-2017, 22:01:09
+    Author     : 1kayat34
+*/
+
+/*Spilt pane*/
+.split-pane *.split-pane-divider {
+-fx-padding: 0 0 0 0;
+}
+.split-pane:horizontal > .split-pane-divider {
+   -fx-background-color: transparent;
+}
+.split-pane:vertical > .split-pane-divider {
+   -fx-background-color: transparent;
+}
+
+/*TAB PANE*
+.tab-pane{
+    -fx-background-color:#0099ff;
+}
+
+.tab-pane *.tab-header-area *.tab-header-background {
+  -fx-background-color:transparent;
+}
+.tab {
+  -fx-font-size: 18;
+  -fx-background-color:transparent;
+}
+
+.tab:selected {
+    -fx-background-color:#0099ff
+}
+#header-tab{
+    -fx-background-color:#0066cc;
+}
+#achorpane-header{
+ -fx-background-color:#0066cc;  
+}
+*/
+/* LABELS */
+.label.status{
+    -fx-text-fill: transparent;
+}
+.label.pane{
+    -fx-border-color:#ccffff;
+    -fx-background-image: url("user.png");
+    -fx-background-size: 100%;
+}
+
+.label.title1{
+    -fx-font-size: 22px;
+    -fx-text-fill:#ccffff;
+    -fx-width:100%;
+    -fx-font-weight:bold;
+}
+.label.title2{
+    -fx-font-size: 16px;
+    -fx-background-color:#0099ff;
+    -fx-text-fill:#ffffff;
+    -fx-width:100%;
+    -fx-font-weight:bold;
+}
+label.user{
+    -fx-font-weight:bold;
+    -fx-font-size: 16px;
+}
+/* IDs */
+#goButton{
+    -fx-font-family:"Times New Roman", Georgia, Serif;
+    -fx-font-size: 14px;
+}
+#password{
+    -fx-background-color:#0099ff;
+    -fx-prompt-text-fill: #ffffff;
+}
+#anchor-header{
+    -fx-background-color:radial-gradient(radius 180%, #0066cc, derive(#0066cc, -30%), derive(#0066cc, 30%)); -fx-text-fill: white;
+}
+/*TEXT FIELD*/
+.text-field{
+    
+}
+.text-field.username{
+    -fx-border-color: #0099ff;
+    -fx-prompt-text-fill: #ffffff;
+}
+
+/* BUTTONS*/
+.button.go{
+    -fx-background-image: url("go.png");
+    -fx-background-size: 100%;
+    
+}
+.button.home{
+    -fx-background-image: url("home.png");
+    -fx-background-size: 100%;
+}
+.button.cancel{
+    -fx-border-color:#0099ff;
+    -fx-background-color:#ffffff;
+}
+.button.add{
+    -fx-background-color:#0066cc;
+    -fx-text-fill:#ffffff;
+}
+
+/* HYPERLINK */
+.hyperlink:hover {
+    -fx-underline: true;
+}
+.hyperlink.focus{
+    -fx-underline:true;
+}

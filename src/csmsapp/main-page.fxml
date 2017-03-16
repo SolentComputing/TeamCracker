@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="900.0" stylesheets="@csms.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <Pane id="anchor-header" prefHeight="65.0" prefWidth="900.0" styleClass="title1" stylesheets="@csms.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="18.0" layoutY="11.0" styleClass="title1" text="CSMS - Cleaning Service Management System" />
+            <Label layoutX="783.0" layoutY="6.0" styleClass="user" text="Tiago Kayaya" textFill="#fcfcfc" />
+            <ButtonBar buttonMinWidth="40.0" layoutX="710.0" layoutY="23.0" prefHeight="23.0" prefWidth="146.0">
+              <buttons>
+                  <Hyperlink minWidth="46.0" prefHeight="23.0" text="Profile" />
+                  <Hyperlink minWidth="58.0" prefHeight="23.0" text="Log out" />
+              </buttons>
+            </ButtonBar>
+         </children>
+      </Pane>
+   </top>
+   <center>
+      <Pane prefHeight="526.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+         <children>
+            <SplitPane dividerPositions="0.10758377425044091" layoutY="-8.0" orientation="VERTICAL" prefHeight="569.0" prefWidth="900.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="60.0" prefWidth="598.0">
+                     <children>
+                        <TabPane layoutY="7.0" prefHeight="55.0" prefWidth="598.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <tabs>
+                            <Tab text="     Clients     ">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="27.0" prefWidth="598.0">
+                                       <children>
+                                          <ButtonBar prefHeight="21.0" prefWidth="350.0">
+                                            <buttons>
+                                                <Hyperlink text="New" />
+                                                <Hyperlink text="Edit" />
+                                                <Hyperlink text="View" />
+                                                <Hyperlink text="Delete" />
+                                            </buttons>
+                                          </ButtonBar>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                            <Tab text="  Services   ">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="24.0" prefWidth="898.0">
+                                       <children>
+                                          <ButtonBar prefHeight="21.0" prefWidth="350.0">
+                                             <buttons>
+                                                <Hyperlink text="New" />
+                                                <Hyperlink text="Edit" />
+                                                <Hyperlink text="View" />
+                                                <Hyperlink text="Delete" />
+                                             </buttons>
+                                          </ButtonBar>
+                                       </children></AnchorPane>
+                              </content>
+                            </Tab>
+                              <Tab text="       Staff        ">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <ButtonBar prefHeight="21.0" prefWidth="350.0">
+                                             <buttons>
+                                                <Hyperlink text="New" />
+                                                <Hyperlink text="Edit" />
+                                                <Hyperlink text="View" />
+                                                <Hyperlink text="Delete" />
+                                             </buttons>
+                                          </ButtonBar>
+                                       </children></AnchorPane>
+                                 </content>
+                              </Tab>
+                          </tabs>
+                        </TabPane>
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="223.0" prefWidth="598.0">
+                     <children>
+                        <TabPane layoutX="-2.0" layoutY="-10.0" prefHeight="501.0" prefWidth="898.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <tabs>
+                            <Tab text="View all clients">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="472.0" prefWidth="898.0">
+                                       <children>
+                                          <TableView layoutX="-2.0" prefHeight="472.0" prefWidth="898.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <columns>
+                                              <TableColumn prefWidth="61.0" text="ID" />
+                                              <TableColumn prefWidth="89.0" text="First name" />
+                                                <TableColumn prefWidth="90.0" text="Last name" />
+                                                <TableColumn prefWidth="227.0" text="Email" />
+                                                <TableColumn prefWidth="258.0" text="address" />
+                                                <TableColumn prefWidth="172.0" text="Service" />
+                                            </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                              <Tab text="View staff       ">
+                                 <content>
+                                    <ScrollPane prefHeight="486.0" prefWidth="898.0">
+                                       <content>
+                                          <TableView prefHeight="435.0" prefWidth="1015.0">
+                                             <columns>
+                                                <TableColumn prefWidth="61.0" text="ID" />
+                                                <TableColumn prefWidth="89.0" text="First name" />
+                                                <TableColumn prefWidth="90.0" text="Last name" />
+                                                <TableColumn prefWidth="108.0" text="Date of birth" />
+                                                <TableColumn prefWidth="194.0" text="Email" />
+                                                <TableColumn prefWidth="214.0" text="address" />
+                                                <TableColumn prefWidth="127.0" text="Role" />
+                                                <TableColumn prefWidth="125.0" text="Available" />
+                                             </columns>
+                                          </TableView>
+                                       </content>
+                                    </ScrollPane>
+                                 </content>
+                              </Tab>
+                          </tabs>
+                        </TabPane>
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </children>
+      </Pane>
+   </center>
+</BorderPane>

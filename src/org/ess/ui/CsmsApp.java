@@ -6,10 +6,13 @@
 package org.ess.ui;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+import org.ess.Database;
 
 /**
  *
@@ -19,12 +22,27 @@ public class CsmsApp extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
+        Database.loadDatabase();
         Parent root = FXMLLoader.load(getClass().getResource("/layout/Login.fxml"));
         
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
         stage.show();
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            
+            @Override
+            public void handle(final WindowEvent event)
+            {
+                try {
+                    System.out.println("Saving database.");
+                    Database.saveDatabase();
+                } catch(final Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            
+        });
     }
 
     /**

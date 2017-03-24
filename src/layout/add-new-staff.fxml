@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="350.0" styleClass="home" stylesheets="@csms.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:controller="org.ess.controller.AddNewStaffController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="350.0" styleClass="home" stylesheets="@csms.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <Pane prefHeight="42.0" prefWidth="300.0" BorderPane.alignment="CENTER">
          <children>
@@ -49,31 +49,31 @@
               </rowConstraints>
                <children>
                   <Label text="First name" />
-                  <TextField prefHeight="25.0" prefWidth="78.0" GridPane.columnIndex="1" />
+                  <TextField fx:id="firstNameInput" prefHeight="25.0" prefWidth="78.0" GridPane.columnIndex="1" />
                   <Label layoutX="10.0" layoutY="17.0" text="Last name" GridPane.rowIndex="1" />
-                  <TextField prefHeight="25.0" prefWidth="87.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="lastNameInput" prefHeight="25.0" prefWidth="87.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label text="Date of birth" GridPane.rowIndex="2" />
-                  <DatePicker prefHeight="25.0" prefWidth="178.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <DatePicker fx:id="dateInput" prefHeight="25.0" prefWidth="178.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label text="Email" GridPane.rowIndex="3" />
                   <Label text="Addres line 1" GridPane.rowIndex="4" />
                   <Label text="Address line 2" GridPane.rowIndex="5" />
-                  <TextField prefHeight="25.0" prefWidth="178.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField prefHeight="25.0" prefWidth="178.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="addressOneInput" prefHeight="25.0" prefWidth="178.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="addressTwoInput" prefHeight="25.0" prefWidth="178.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <Label text="City" GridPane.rowIndex="6" />
-                  <TextField prefHeight="25.0" prefWidth="178.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <TextField fx:id="cityInput" prefHeight="25.0" prefWidth="178.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <Label text="Country" GridPane.rowIndex="7" />
-                  <TextField prefHeight="25.0" prefWidth="178.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <TextField fx:id="countryInput" prefHeight="25.0" prefWidth="178.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <Label text="Postcode" GridPane.rowIndex="8" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <TextField fx:id="postcodeInput" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                   <HBox GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <children>
-                        <TextField prefHeight="25.0" prefWidth="178.0" />
+                        <TextField fx:id="emailInput" prefHeight="25.0" prefWidth="178.0" />
                      </children>
                   </HBox>
                </children>
             </GridPane>
-            <Button layoutX="154.0" layoutY="369.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" styleClass="add" text="Add" />
-            <Button layoutX="248.0" layoutY="369.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="80.0" styleClass="cancel" text="Cancel" />
+            <Button layoutX="154.0" layoutY="369.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" styleClass="add" text="Add" onAction="#onAdd"/>
+            <Button layoutX="248.0" layoutY="369.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="80.0" styleClass="cancel" text="Cancel" onAction="#onCancel"/>
             <Separator prefHeight="2.0" prefWidth="350.0" />
          </children>
       </Pane>

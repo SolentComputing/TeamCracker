@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="900.0" stylesheets="@csms.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ess.controller.MainController">
+   <top>
+      <Pane id="anchor-header" prefHeight="65.0" prefWidth="900.0" styleClass="title1" stylesheets="@csms.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="18.0" layoutY="11.0" prefHeight="32.0" prefWidth="482.0" styleClass="title1" text="Cleaning Service Management System (CSMS)" />
+            <Label layoutX="783.0" layoutY="6.0" styleClass="user" text="username here" textFill="#fcfcfc" />
+            <ButtonBar buttonMinWidth="40.0" layoutX="710.0" layoutY="23.0" prefHeight="23.0" prefWidth="146.0">
+              <buttons>
+                  <Hyperlink minWidth="46.0" prefHeight="23.0" text="Profile" />
+                  <Hyperlink minWidth="58.0" prefHeight="23.0" text="Log out" />
+              </buttons>
+            </ButtonBar>
+         </children>
+      </Pane>
+   </top>
+   <center>
+      <Pane prefHeight="526.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+         <children>
+            <SplitPane dividerPositions="0.047619047619047616" layoutY="-8.0" orientation="VERTICAL" prefHeight="569.0" prefWidth="900.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="60.0" prefWidth="598.0">
+                     <children>
+                        <MenuBar layoutX="-1.0" layoutY="2.0" prefHeight="43.0" prefWidth="898.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <menus>
+                            <Menu mnemonicParsing="false" text="File">
+                              <items>
+                                <MenuItem mnemonicParsing="false" onAction="#logout" text="Exit" />
+                              </items>
+                            </Menu>
+                            <Menu mnemonicParsing="false" text="Add">
+                              <items>
+                                <MenuItem mnemonicParsing="false" onAction="#addNewClient" text="New Client" />
+                                    <MenuItem mnemonicParsing="false" onAction="#addNewStaff" text="New Package" />
+                                    <MenuItem mnemonicParsing="false" onAction="#addNewStaff" text="New Service" />
+                              </items>
+                            </Menu>
+                              <Menu mnemonicParsing="false" text="Modify">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#addNewStaff" text="Edit client details" />
+                                    <MenuItem mnemonicParsing="false" onAction="#addNewStaff" text="Edit package details" />
+                                    <MenuItem mnemonicParsing="false" onAction="#addNewStaff" text="Edit service details" />
+                                 </items>
+                              </Menu>
+                              <Menu mnemonicParsing="false" text="View">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#viewClient" text="Client" />
+                                    <MenuItem mnemonicParsing="false" onAction="#viewStaff" text="Packages" />
+                                    <MenuItem mnemonicParsing="false" onAction="#viewStaff" text="Services" />
+                                 </items>
+                              </Menu>
+                              <Menu mnemonicParsing="false" text="Delete">
+                              <items>
+                                <MenuItem mnemonicParsing="false" onAction="#deleteClient" text="Delete Client" />
+                                    <MenuItem mnemonicParsing="false" onAction="#deleteStaff" text="Delete Package" />
+                                    <MenuItem mnemonicParsing="false" onAction="#deleteStaff" text="Delete Service" />
+                              </items>
+                            </Menu>
+                              <Menu mnemonicParsing="false" text="Help">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#deleteStaff" text="CSMS help" />
+                                    <MenuItem mnemonicParsing="false" onAction="#deleteClient" text="About CSMS" />
+                                 </items>
+                              </Menu>
+                          </menus>
+                        </MenuBar>
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="518.0" prefWidth="898.0">
+                     <children>
+                        <TabPane layoutX="-2.0" layoutY="-10.0" prefHeight="501.0" prefWidth="898.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <tabs>
+                            <Tab text="List of  clients">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="472.0" prefWidth="898.0">
+                                       <children>
+                                          <TableView fx:id="clientTable" layoutX="-2.0" prefHeight="472.0" prefWidth="898.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <columns>
+                                              <TableColumn fx:id="clientId" prefWidth="61.0" text="ID" />
+                                              <TableColumn fx:id="clientFName" prefWidth="89.0" text="First name" />
+                                                <TableColumn fx:id="clientLName" prefWidth="90.0" text="Last name" />
+                                                <TableColumn fx:id="clientEmail" prefWidth="227.0" text="Email" />
+                                                <TableColumn fx:id="clientAddress" prefWidth="258.0" text="address" />
+                                                <TableColumn fx:id="clientService" prefWidth="172.0" text="Service" />
+                                            </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                              <Tab text="Packages and service information">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TableView layoutX="48.0" layoutY="14.0" prefHeight="506.0" prefWidth="898.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <columns>
+                                                <TableColumn prefWidth="89.0" text="Package ID" />
+                                                <TableColumn prefWidth="187.0" text="Package type" />
+                                                <TableColumn prefWidth="70.0" text="Service ID" />
+                                                <TableColumn prefWidth="110.0" text="Service type" />
+                                                <TableColumn prefWidth="188.0" text="Description" />
+                                                <TableColumn prefWidth="75.0" text="Start date" />
+                                                <TableColumn prefWidth="75.0" text="Due date" />
+                                                <TableColumn prefWidth="103.0" text="Client" />
+                                             </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </Tab>
+                          </tabs>
+                        </TabPane>
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </children>
+      </Pane>
+   </center>
+</BorderPane>

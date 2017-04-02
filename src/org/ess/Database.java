@@ -13,7 +13,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import org.ess.entity.Booking;
 import org.ess.entity.Client;
+import org.ess.entity.Service;
 import org.ess.entity.Staff;
 
 /**
@@ -24,6 +26,8 @@ public class Database {
     
     public static ArrayList<Client> CLIENT_MAP = new ArrayList<>();
     public static ArrayList<Staff> STAFF_MAP = new ArrayList<>();
+    public static ArrayList<Service> SERVICE_MAP = new ArrayList<>();
+    public static ArrayList<Booking> BOOKING_MAP = new ArrayList<>();
     
     public static void loadDatabase() throws IOException
     {
@@ -36,6 +40,8 @@ public class Database {
         final DataInputStream input = new DataInputStream(new FileInputStream("./database.dat"));
         final int clientSize = input.readShort();
         final int staffSize = input.readShort();
+        final int serviceSize = input.readShort();
+        final int bookingSize = input.readShort();
         for (int index = 0; index < clientSize; index++)
         {
             final Client client = new Client().setId(input.readShort())
@@ -63,6 +69,21 @@ public class Database {
                                            .setPostcode(input.readUTF());
             STAFF_MAP.add(staff);
         }
+        for (int index = 0; index < serviceSize; index++)
+        {
+            final Service service = new Service().setId(input.readShort())
+                                                 .setName(input.readUTF())
+                                                 .setDescription(input.readUTF())
+                                                 .setStaffId(input.readShort());
+            SERVICE_MAP.add(service);
+        }
+        for (int index = 0; index < bookingSize; index++)
+        {
+            final Booking booking = new Booking().setId(input.readShort())
+                                                 .setServiceId(input.readShort())
+                                                 .setClientId(input.readShort());
+            BOOKING_MAP.add(booking);
+        }
     }
         
     
@@ -71,6 +92,8 @@ public class Database {
         final DataOutputStream output = new DataOutputStream(new FileOutputStream("./database.dat"));
         output.writeShort(CLIENT_MAP.size());
         output.writeShort(STAFF_MAP.size());
+        output.writeShort(SERVICE_MAP.size());
+        output.writeShort(BOOKING_MAP.size());
         for (final Client client : CLIENT_MAP)
         {
             output.writeShort(client.getId());
@@ -96,6 +119,19 @@ public class Database {
             output.writeUTF(staff.getCountry());
             output.writeUTF(staff.getPostcode());
         }
+        for (final Service service : SERVICE_MAP)
+        {
+            output.writeShort(service.getId());
+            output.writeUTF(service.getName());
+            output.writeUTF(service.getDescription());
+            output.writeShort(service.getStaffId());
+        }
+        for (final Booking booking : BOOKING_MAP)
+        {
+            output.writeShort(booking.getId());
+            output.writeShort(booking.getServiceId());
+            output.writeShort(booking.getClientId());
+        }
         output.flush();
         output.close();
     }
@@ -119,6 +155,16 @@ public class Database {
         CLIENT_MAP.remove(client);
     }
         
+    public static Client getClient(final int id)
+    {
+        for (final Client client : CLIENT_MAP)
+        {
+            if(client.getId() == id)
+                return client;
+        }
+        return null;
+    }
+    
     public static void addStaff(final Staff staff)
     {
         int highest = 0; 
@@ -136,6 +182,64 @@ public class Database {
     public static void deleteStaff(final Staff staff)
     {
         STAFF_MAP.remove(staff);
+    }
+    
+    public static Staff getStaff(final int staffId)
+    {
+        for (final Staff s : STAFF_MAP)
+        {
+            if(s.getId() == staffId)
+                return s;
+        }
+        return null;
+    }
+    
+    public static void addService(final Service service)
+    {
+        int highest = 0;
+        for (final Service s : SERVICE_MAP)
+        {
+            if(s.getId() >= highest)
+            {
+                highest = s.getId() + 1;
+                continue;
+            }
+        }
+        SERVICE_MAP.add(service.setId(highest));
+    }
+    
+    public static void deleteService(final Service service)
+    {
+        SERVICE_MAP.remove(service);
+    }
+    
+    public static Service getService(final int id)
+    {
+        for (final Service service : SERVICE_MAP)
+        {
+            if(service.getId() == id)
+                return service;
+        }
+        return null;
+    }
+    
+    public static void addBooking(final Booking booking)
+    {
+        int highest = 0; 
+        for (final Booking b : BOOKING_MAP)
+        {
+            if(b.getId() >= highest)
+            {
+                highest = b.getId() + 1;
+                break;
+            }
+        }
+        BOOKING_MAP.add(booking.setId(highest));
+    }
+    
+    public static void deleteBooking(final Booking booking)
+    {
+        BOOKING_MAP.remove(booking);
     }
     
 }

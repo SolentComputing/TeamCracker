@@ -22,7 +22,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.ess.Database;
+import org.ess.entity.Booking;
 import org.ess.entity.Client;
+import org.ess.entity.Service;
 import org.ess.entity.Staff;
 
 /**
@@ -35,9 +37,13 @@ public class MainController implements Initializable {
     
     private Stage addClientStage;
     private Stage addStaffStage;
+    private Stage addServiceStage;
+    private Stage addBookingStage;
+    
     private Stage viewClientStage;
     private Stage viewStaffStage;
-    
+    private Stage viewServiceStage;
+    private Stage viewBookingStage;
     
     /*
      * Client Table
@@ -79,6 +85,34 @@ public class MainController implements Initializable {
     @FXML
     private TableColumn<Staff, Boolean> staffAvailable;
     
+    /*
+     * Service Table
+    */
+    @FXML
+    private TableView<Service> serviceTable;
+    @FXML
+    private TableColumn<Service, Integer> serviceId;
+    @FXML
+    private TableColumn<Service, String> serviceName;
+    @FXML
+    private TableColumn<Service, String> serviceDesc;
+    @FXML
+    private TableColumn<Service, String> serviceStaff;
+    
+    /*
+     * Booking Table
+    */
+    @FXML
+    private TableView<Booking> bookingTable;
+    @FXML
+    private TableColumn<Booking, Integer> bookingId;
+    @FXML
+    private TableColumn<Booking, String> bookingSName;
+    @FXML
+    private TableColumn<Booking, Integer> bookingCID;
+    @FXML
+    private TableColumn<Booking, String> bookingCName;
+    
     
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -98,12 +132,27 @@ public class MainController implements Initializable {
         staffEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         staffAddress.setCellValueFactory(new PropertyValueFactory<>("addressOne"));
         
+        serviceId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        serviceName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        serviceDesc.setCellValueFactory(new PropertyValueFactory<>("description"));
+        serviceStaff.setCellValueFactory(new PropertyValueFactory<>("staffName"));
+        
+        bookingId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        bookingSName.setCellValueFactory(new PropertyValueFactory<>("serviceName"));
+        bookingCID.setCellValueFactory(new PropertyValueFactory<>("clientId"));
+        bookingCName.setCellValueFactory(new PropertyValueFactory<>("clientName"));
+        
         clientTable.getItems().clear();
         clientTable.getItems().addAll(Database.CLIENT_MAP);
         
         staffTable.getItems().clear();
         staffTable.getItems().addAll(Database.STAFF_MAP);
         
+        serviceTable.getItems().clear();
+        serviceTable.getItems().addAll(Database.SERVICE_MAP);
+        
+        bookingTable.getItems().clear();
+        bookingTable.getItems().addAll(Database.BOOKING_MAP);
     }
     
     @FXML
@@ -149,6 +198,38 @@ public class MainController implements Initializable {
     }
     
     @FXML
+    private void addNewService() throws IOException
+    {
+        System.out.println("Add new service");
+        if(addServiceStage != null)
+        {
+            addServiceStage.show();
+            return;
+        }
+        Parent root = FXMLLoader.load(getClass().getResource("/layout/add-new-service.fxml"));
+        Scene scene = new Scene(root);
+        addServiceStage = new Stage();
+        addServiceStage.setScene(scene);
+        addServiceStage.show();
+    }
+    
+    @FXML
+    private void addNewBooking() throws IOException
+    {
+        System.out.println("Add new booking");
+        if(addBookingStage != null)
+        {
+            addBookingStage.show();
+            return;
+        }
+        Parent root = FXMLLoader.load(getClass().getResource("/layout/add-new-booking.fxml"));
+        Scene scene = new Scene(root);
+        addBookingStage = new Stage();
+        addBookingStage.setScene(scene);
+        addBookingStage.show();
+    }
+    
+    @FXML
     private void viewClient() throws IOException
     {
         if(clientTable.getSelectionModel().getSelectedItem() == null)
@@ -184,6 +265,44 @@ public class MainController implements Initializable {
         viewStaffStage = new Stage();
         viewStaffStage.setScene(scene);
         viewStaffStage.show();
+    }
+    
+    @FXML
+    private void viewService() throws IOException
+    {
+        if(serviceTable.getSelectionModel().getSelectedItem() == null)
+        {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Please select a service to view.");
+            alert.showAndWait();
+            return;
+        }
+        Parent root = FXMLLoader.load(getClass().getResource("/layout/modify-service.fxml"));
+        Scene scene = new Scene(root);
+        viewServiceStage = new Stage();
+        viewServiceStage.setScene(scene);
+        viewServiceStage.show();
+    }
+    
+    @FXML
+    private void viewBooking() throws IOException
+    {
+        if(bookingTable.getSelectionModel().getSelectedItem() == null)
+        {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Please select a booking to view.");
+            alert.showAndWait();
+            return;
+        }
+        Parent root = FXMLLoader.load(getClass().getResource("/layout/modify-booking.fxml"));
+        Scene scene = new Scene(root);
+        viewBookingStage = new Stage();
+        viewBookingStage.setScene(scene);
+        viewBookingStage.show();
     }
     
     @FXML
@@ -226,6 +345,46 @@ public class MainController implements Initializable {
         }
     }
     
+    @FXML
+    private void deleteService()
+    {
+        if(serviceTable.getSelectionModel().getSelectedItem() == null)
+        {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Please select a service to delete.");
+            alert.showAndWait();
+            return;
+        }
+        if(serviceTable.getSelectionModel().getSelectedItem() != null)
+        {
+            Database.deleteService(serviceTable.getSelectionModel().getSelectedItem());
+            updateTables();
+            return;
+        }
+    }
+    
+    @FXML
+    private void deleteBooking()
+    {
+        if(bookingTable.getSelectionModel().getSelectedItem() == null)
+        {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Please select a booking to delete.");
+            alert.showAndWait();
+            return;
+        }
+        if(bookingTable.getSelectionModel().getSelectedItem() != null)
+        {
+            Database.deleteBooking(bookingTable.getSelectionModel().getSelectedItem());
+            updateTables();
+            return;
+        }
+    }
+    
     public void updateTables()
     {
         clientTable.getItems().clear();
@@ -233,6 +392,12 @@ public class MainController implements Initializable {
         
         staffTable.getItems().clear();
         staffTable.getItems().addAll(Database.STAFF_MAP);
+        
+        serviceTable.getItems().clear();
+        serviceTable.getItems().addAll(Database.SERVICE_MAP);
+        
+        bookingTable.getItems().clear();
+        bookingTable.getItems().addAll(Database.BOOKING_MAP);
     }
     
     public static Client getSelectedClient()
@@ -243,6 +408,16 @@ public class MainController implements Initializable {
     public static Staff getSelectedStaff()
     {
         return instance.staffTable.getSelectionModel().getSelectedItem();
+    }
+    
+    public static Service getSelectedService()
+    {
+        return instance.serviceTable.getSelectionModel().getSelectedItem();
+    }
+    
+    public static Booking getSelectedBooking()
+    {
+        return instance.bookingTable.getSelectionModel().getSelectedItem();
     }
     
     public static MainController getController()

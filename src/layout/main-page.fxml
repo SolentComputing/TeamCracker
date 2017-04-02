@@ -49,18 +49,24 @@
                               <items>
                                 <MenuItem mnemonicParsing="false" text="New Client" onAction="#addNewClient" />
                                     <MenuItem mnemonicParsing="false" text="New Staff" onAction="#addNewStaff" />
+                                    <MenuItem mnemonicParsing="false" text="New Service" onAction="#addNewService" />
+                                    <MenuItem mnemonicParsing="false" text="New Booking" onAction="#addNewBooking" />
                               </items>
                             </Menu>
-                              <Menu mnemonicParsing="false" text="View">
+                              <Menu mnemonicParsing="false" text="View/Modify">
                                  <items>
                                     <MenuItem mnemonicParsing="false" text="Client" onAction="#viewClient"/>
                                     <MenuItem mnemonicParsing="false" text="Staff" onAction="#viewStaff"/>
+                                    <MenuItem mnemonicParsing="false" text="Service" onAction="#viewService"/>
+                                    <MenuItem mnemonicParsing="false" text="Booking" onAction="#viewBooking"/>
                                  </items>
                               </Menu>
                               <Menu mnemonicParsing="false" text="Delete">
                               <items>
                                 <MenuItem mnemonicParsing="false" text="Delete Selected Client" onAction="#deleteClient" />
                                     <MenuItem mnemonicParsing="false" text="Delete Selected Staff" onAction="#deleteStaff" />
+                                    <MenuItem mnemonicParsing="false" text="Delete Selected Service" onAction="#deleteService" />
+                                    <MenuItem mnemonicParsing="false" text="Delete Selected Booking" onAction="#deleteBooking" />
                               </items>
                             </Menu>
                           </menus>
@@ -71,7 +77,7 @@
                      <children>
                         <TabPane layoutX="-2.0" layoutY="-10.0" prefHeight="501.0" prefWidth="898.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <tabs>
-                            <Tab text="View all clients">
+                            <Tab text="View Clients">
                               <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="472.0" prefWidth="898.0">
                                        <children>
@@ -89,7 +95,7 @@
                                     </AnchorPane>
                               </content>
                             </Tab>
-                              <Tab text="View staff">
+                              <Tab text="View Staff">
                                  <content>
                                     <ScrollPane prefHeight="486.0" prefWidth="898.0">
                                        <content>
@@ -109,6 +115,38 @@
                                     </ScrollPane>
                                  </content>
                               </Tab>
+                              <Tab text="View Services">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="472.0" prefWidth="898.0">
+                                       <children>
+                                          <TableView fx:id="serviceTable" layoutX="-2.0" prefHeight="472.0" prefWidth="898.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <columns>
+                                              <TableColumn fx:id="serviceId" prefWidth="50.0" text="ID" />
+                                              <TableColumn fx:id="serviceName" prefWidth="190.0" text="Name" />
+                                              <TableColumn fx:id="serviceDesc" prefWidth="560" text="Description" />
+                                              <TableColumn fx:id="serviceStaff" prefWidth="100.0" text="Staff" />
+                                            </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                            <Tab text="View Bookings">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="472.0" prefWidth="898.0">
+                                       <children>
+                                          <TableView fx:id="bookingTable" layoutX="-2.0" prefHeight="472.0" prefWidth="898.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <columns>
+                                              <TableColumn fx:id="bookingId" prefWidth="61.0" text="ID" />
+                                              <TableColumn fx:id="bookingSName" prefWidth="89.0" text="Service Name" />
+                                                <TableColumn fx:id="bookingCID" prefWidth="90.0" text="Client ID" />
+                                                <TableColumn fx:id="bookingCName" prefWidth="227.0" text="Client Name" />
+                                            </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
                           </tabs>
                         </TabPane>
                      </children>

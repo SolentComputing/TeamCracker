@@ -52,7 +52,6 @@ public class AddNewClientController implements Initializable {
             lastNameInput,
             emailInput,
             addressOneInput,
-            addressTwoInput,
             cityInput,
             countryInput,
             postcodeInput

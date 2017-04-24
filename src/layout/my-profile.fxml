@@ -24,7 +24,7 @@
       <Pane id="anchor-header" prefHeight="65.0" prefWidth="900.0" styleClass="title1" stylesheets="@csms.css" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="18.0" layoutY="11.0" prefHeight="32.0" prefWidth="482.0" styleClass="title1" text="Cleaning Service Management System (CSMS)" />
-            <Label layoutX="783.0" layoutY="6.0" styleClass="user" text="username here" textFill="#fcfcfc" />
+            <Label layoutX="783.0" layoutY="6.0" styleClass="user" text="Dean Goodyer" textFill="#fcfcfc" />
             <ButtonBar buttonMinWidth="40.0" layoutX="710.0" layoutY="23.0" prefHeight="23.0" prefWidth="146.0">
               <buttons>
                   <Hyperlink minWidth="46.0" prefHeight="23.0" text="Profile" />
@@ -42,13 +42,13 @@
                   <Image url="@../resources/user.png" />
                </image>
             </ImageView>
-            <Hyperlink layoutX="162.0" layoutY="325.0" text="Change photo" />
+            <Hyperlink layoutX="158.0" layoutY="313.0" text="Change photo" />
             <Label layoutX="427.0" layoutY="60.0" text="Personal Information">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="149.0" layoutY="20.0" text="My profile">
+            <Label layoutX="156.0" layoutY="11.0" text="My profile">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -72,13 +72,13 @@
                   <Label text="First name" />
                   <Label text="Middle name" GridPane.rowIndex="1" />
                   <Label text="Last name" GridPane.rowIndex="2" />
-                  <TextField GridPane.columnIndex="1">
+                  <TextField text="Dean" GridPane.columnIndex="1">
                      <padding>
                         <Insets bottom="5.0" top="5.0" />
                      </padding>
                   </TextField>
                   <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField text="Goodyer" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label text="Gender" GridPane.rowIndex="3" />
                   <RadioButton mnemonicParsing="false" text="Male" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <RadioButton layoutX="210.0" layoutY="107.0" mnemonicParsing="false" text="Female" GridPane.columnIndex="1" GridPane.rowIndex="3">
@@ -90,10 +90,10 @@
                   <Label text="Country" GridPane.rowIndex="5" />
                   <Label text="State/Province" GridPane.rowIndex="6" />
                   <DatePicker prefHeight="25.0" prefWidth="183.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <ComboBox prefHeight="25.0" prefWidth="195.0" promptText="Select " GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <ComboBox prefHeight="25.0" prefWidth="182.0" promptText="Chose one" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <ComboBox prefHeight="25.0" prefWidth="195.0" promptText="United Kingdom" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <ComboBox prefHeight="25.0" prefWidth="182.0" promptText="Littlehampton" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <Label text="Zip/ Postal Code" GridPane.rowIndex="7" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <TextField text="BN17 5DL" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                </children>
             </GridPane>
             <Separator layoutX="428.0" layoutY="80.0" prefHeight="8.0" prefWidth="308.0" />
@@ -115,13 +115,14 @@
                <children>
                   <Label text="Telephone Number" />
                   <Label text="Email" GridPane.rowIndex="1" />
-                  <TextField GridPane.columnIndex="1" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField text="+4474907823" GridPane.columnIndex="1" />
+                  <TextField text="goodyer@gmail.com" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
             <Separator layoutX="428.0" layoutY="455.0" prefHeight="4.0" prefWidth="309.0" />
-            <Button layoutX="579.0" layoutY="484.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="67.0" text="Save" />
-            <Button layoutX="671.0" layoutY="484.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="64.0" text="Cancel" />
+            <Button layoutX="579.0" layoutY="484.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="67.0" styleClass="add" text="Save" />
+            <Button layoutX="671.0" layoutY="484.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="64.0" styleClass="cancel" text="Cancel" />
+            <Separator layoutX="3.0" layoutY="44.0" prefHeight="0.0" prefWidth="892.0" />
          </children>
       </Pane>
    </center>

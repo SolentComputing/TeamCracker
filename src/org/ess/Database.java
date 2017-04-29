@@ -17,6 +17,7 @@ import org.ess.entity.Booking;
 import org.ess.entity.Client;
 import org.ess.entity.Service;
 import org.ess.entity.Staff;
+import org.ess.entity.User;
 
 /**
  *
@@ -28,6 +29,7 @@ public class Database {
     public static ArrayList<Staff> STAFF_MAP = new ArrayList<>();
     public static ArrayList<Service> SERVICE_MAP = new ArrayList<>();
     public static ArrayList<Booking> BOOKING_MAP = new ArrayList<>();
+    public static ArrayList<User> USER_MAP = new ArrayList<>();
     
     public static void loadDatabase() throws IOException
     {
@@ -35,6 +37,17 @@ public class Database {
         if(!databaseFile.exists())
         {
             System.out.println("No database file available.");
+            System.out.println("Generating users.");
+            final User admin = new User().setId(0)
+                                         .setUsername("admin")
+                                         .setPassword("admin")
+                                         .setAdministrator(true);
+            final User user = new User().setId(1)
+                                        .setUsername("user")
+                                        .setPassword("user")
+                                        .setAdministrator(false);
+            USER_MAP.add(admin);
+            USER_MAP.add(user);       
             return;
         }
         final DataInputStream input = new DataInputStream(new FileInputStream("./database.dat"));
@@ -84,6 +97,42 @@ public class Database {
                                                  .setClientId(input.readShort());
             BOOKING_MAP.add(booking);
         }
+        if(input.available() > 0)
+        {
+            System.out.println("Reading users.");
+            final int userSize = input.readShort();
+            for (int index = 0; index < userSize; index++)
+            {
+                final User user = new User().setId(input.readShort())
+                                            .setUsername(input.readUTF())
+                                            .setPassword(input.readUTF())
+                                            .setAdministrator(input.readBoolean())
+                                            .setFirstName(input.readUTF())
+                                            .setMiddleName(input.readUTF())
+                                            .setLastName(input.readUTF())
+                                            .setGender((int) input.readByte())
+                                            .setDob(LocalDate.ofEpochDay(input.readLong()))
+                                            .setCountry(input.readUTF())
+                                            .setState(input.readUTF())
+                                            .setPostcode(input.readUTF())
+                                            .setTelephoneNumber(input.readUTF())
+                                            .setEmail(input.readUTF());
+                USER_MAP.add(user);
+            }                                
+        } else
+        {
+            System.out.println("Generating users.");
+            final User admin = new User().setId(0)
+                                         .setUsername("admin")
+                                         .setPassword("admin")
+                                         .setAdministrator(true);
+            final User user = new User().setId(1)
+                                        .setUsername("user")
+                                        .setPassword("user")
+                                        .setAdministrator(false);
+            USER_MAP.add(admin);
+            USER_MAP.add(user);                           
+        }
     }
         
     
@@ -131,6 +180,24 @@ public class Database {
             output.writeShort(booking.getId());
             output.writeShort(booking.getServiceId());
             output.writeShort(booking.getClientId());
+        }
+        output.writeShort(USER_MAP.size());
+        for (final User user : USER_MAP)
+        {
+            output.writeShort(user.getId());
+            output.writeUTF(user.getUsername());
+            output.writeUTF(user.getPassword());
+            output.writeBoolean(user.getAdmin());
+            output.writeUTF(user.getFirstName());
+            output.writeUTF(user.getMiddleName());
+            output.writeUTF(user.getLastName());
+            output.writeByte(user.getGender());
+            output.writeLong(user.getDob().toEpochDay());
+            output.writeUTF(user.getCountry());
+            output.writeUTF(user.getState());
+            output.writeUTF(user.getPostcode());
+            output.writeUTF(user.getTelephoneNumber());
+            output.writeUTF(user.getEmail());
         }
         output.flush();
         output.close();
@@ -213,6 +280,11 @@ public class Database {
         SERVICE_MAP.remove(service);
     }
     
+    public static ArrayList<Service> getServices()
+    {
+        return SERVICE_MAP;
+    }
+    
     public static Service getService(final int id)
     {
         for (final Service service : SERVICE_MAP)
@@ -240,6 +312,16 @@ public class Database {
     public static void deleteBooking(final Booking booking)
     {
         BOOKING_MAP.remove(booking);
+    }
+    
+    public static ArrayList<Booking> getBookings()
+    {
+        return BOOKING_MAP;
+    }
+    
+    public static ArrayList<User> getUsers()
+    {
+        return USER_MAP;
     }
     
 }

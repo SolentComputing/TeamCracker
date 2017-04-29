@@ -18,9 +18,8 @@
       <TextField fx:id="userInput" text="user" layoutX="149.0" layoutY="207.0" prefHeight="25.0" prefWidth="164.0" promptText="Username" />
       <Button contentDisplay="CENTER" layoutX="322.0" layoutY="241.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="26.0" styleClass="go" textAlignment="CENTER" onAction="#onLogin"/>
       <Label layoutX="220.0" layoutY="306.0" styleClass="status" text="Status" textFill="#f80606" />
-      <PasswordField fx:id="passInput" text="pass" layoutX="149.0" layoutY="241.0" prefHeight="25.0" prefWidth="164.0" promptText="Password" />
+      <PasswordField fx:id="passInput" text="user" layoutX="149.0" layoutY="241.0" prefHeight="25.0" prefWidth="164.0" promptText="Password" />
       <Label layoutX="176.0" layoutY="53.0" prefHeight="101.0" prefWidth="110.0" styleClass="pane" textAlignment="CENTER" />
-      <ComboBox layoutX="149.0" layoutY="311.0" prefHeight="25.0" prefWidth="164.0" promptText="Select user type" />
       <Label fx:id="errorLabel" layoutX="149.0" layoutY="269.0" text="Invalid username or password!" textFill="#f20808" visible="false" />
    </children>
 </AnchorPane>

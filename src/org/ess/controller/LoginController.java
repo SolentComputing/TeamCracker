@@ -18,6 +18,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.ess.Database;
+import org.ess.entity.User;
 
 /**
  *
@@ -25,6 +27,8 @@ import javafx.stage.Stage;
  */
 public class LoginController implements Initializable {
 
+    private static LoginController instance;
+    
     @FXML
     private TextField userInput;
     @FXML
@@ -32,10 +36,13 @@ public class LoginController implements Initializable {
     @FXML
     private Label errorLabel;
     
+    public User loggedUser;
+    
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        
+        instance = this;
+        loggedUser = null;
     }
     
     @FXML
@@ -43,7 +50,15 @@ public class LoginController implements Initializable {
     {
         final String username = userInput.getText();
         final String password = passInput.getText();
-        if(!username.equals("user") || !password.equals("pass"))
+        for (final User user : Database.getUsers())
+        {
+            if(user.getUsername().equalsIgnoreCase(username) && user.getPassword().equals(password))
+            {
+                loggedUser = user;
+                break;
+            }
+        }
+        if(loggedUser == null)
         {
             errorLabel.setVisible(true);
             return;
@@ -64,6 +79,11 @@ public class LoginController implements Initializable {
             
         }
         
+    }
+    
+    public static LoginController getInstance()
+    {
+        return instance;
     }
     
 }

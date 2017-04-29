@@ -8,6 +8,7 @@ package org.ess.entity;
 import java.time.LocalDate;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import org.ess.Database;
 
 /**
  *
@@ -126,6 +127,13 @@ public class Staff {
         return addressTwo;
     }
     
+    public String getFullAddress()
+    {
+        if(addressTwo == null || addressTwo.length() < 1)
+            return addressOne + ", " + postcode;
+        return addressOne + ", " + addressTwo + ", " + postcode;
+    }
+    
     public String getCity()
     {
         return city;
@@ -144,6 +152,27 @@ public class Staff {
     public final ObjectProperty<LocalDate> dobProperty()
     {
         return dob;
+    }
+    
+    public String getService()
+    {
+        String services = "";
+        for (final Service service : Database.getServices())
+        {
+            if(service != null && service.getStaffId() == id)
+                services += (services.length() > 0 ? (", " + service.getName()) : service.getName());
+        }
+        return services.isEmpty() ? "No bookings" : services;
+    }
+    
+    public boolean getAvailable()
+    {
+        for (final Service service : Database.getServices())
+        {
+            if(service != null && service.getStaffId() == id)
+                return false;
+        }
+        return true;
     }
     
 }

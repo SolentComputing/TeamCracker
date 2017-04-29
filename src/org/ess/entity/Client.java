@@ -5,6 +5,8 @@
  */
 package org.ess.entity;
 
+import org.ess.Database;
+
 /**
  *
  * @author Dean
@@ -110,6 +112,13 @@ public class Client {
         return addressTwo;
     }
     
+    public String getFullAddress()
+    {
+        if(addressTwo == null || addressTwo.length() < 1)
+            return addressOne + ", " + postcode;
+        return addressOne + ", " + addressTwo + ", " + postcode;
+    }
+    
     public String getCity()
     {
         return city;
@@ -125,6 +134,15 @@ public class Client {
         return postcode;
     }
     
-    
+    public String getService()
+    {
+        String bookings = "";
+        for (final Booking booking : Database.getBookings())
+        {
+            if(booking != null && booking.getClientId() == id)
+                bookings += (bookings.length() > 0 ? (", " + booking.getServiceName()) : booking.getServiceName());
+        }
+        return bookings.isEmpty() ? "No bookings" : bookings;
+    }
     
 }
